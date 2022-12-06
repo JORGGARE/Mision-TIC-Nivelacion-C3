@@ -4,6 +4,7 @@ package com.example.demo.Controllers;
 import com.example.demo.Controllers.exceptions.NonexistentEntityException;
 import com.example.demo.Models.Usuarios;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -31,9 +32,11 @@ public class UsuariosJpaController implements Serializable {
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-
+    
+    @CrossOrigin("*")
     @PostMapping("/login")
-    public String login(@RequestBody Usuarios usuario){
+    public HashMap<String, String> login(@RequestBody Usuarios usuario){
+            HashMap<String, String> map = new HashMap<>();
             System.out.println("Correo: "+usuario.getCorreo()+" - "+ usuario.getContrasena());
             EntityManager em = getEntityManager();
             try{
@@ -42,15 +45,15 @@ public class UsuariosJpaController implements Serializable {
                 Query q =em.createNativeQuery(query);
                 List<Usuarios> lu = q.getResultList();
                 if (lu.isEmpty()){
-                    return "no se encuentra el usuario";
+                    map.put("msj","no");
                 }else{
-                    return "ok";
+                    map.put("msj","ok");
                 }
             }catch(Exception ex){
                 System.out.println(""+ex);
-                return "Error Exception";
+                map.put("msj","error Exception");
             }
-        
+            return map;
     }
     
     @PostMapping()

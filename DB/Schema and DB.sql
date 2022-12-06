@@ -4,7 +4,7 @@ CREATE TABLE Productos(
 	Id int unsigned auto_increment primary key NOT NULL,
     Nombre varchar(50),
     Categoria_id int,
-    Descripocion varchar(150),
+    Descripusuariosusuarioscion varchar(150),
 	Precio int
     );
 
@@ -12,15 +12,15 @@ CREATE TABLE Categorias(
 	Id int unsigned auto_increment primary key NOT NULL,
 	Nombre varchar(50)
 	);
-
+drop table usuarios;
 CREATE TABLE Usuarios(
 	Id int unsigned auto_increment primary key NOT NULL,
     Nombre varchar(50),
     Correo varchar(50),
-    Contraseña varchar(50)
+    Contrasena varchar(50)
     );
 
-//DATABASE//
+ //DATABASE//
 SHOW TABLES FROM TIENDA3CS;
 select * from categorias;
 INSERT INTO categorias(Nombre) 
@@ -40,7 +40,7 @@ INSERT INTO productos (Nombre, Categoria_id, Descripocion, Precio)
             
 select * from usuarios;
 
-INSERT INTO usuarios (Nombre, Correo, Contraseña)
+INSERT INTO usuarios (Nombre, Correo, Contrasena)
 	values ('admin', 'admin@correo.com', 12345);
 
-select * from Usuarios where correo = 'admin@correo.com' and contraseña = '12345';
+select * from Usuarios where correo = 'admin@correo.com' and contrasena = '12345';

@@ -91,7 +91,7 @@ public class CategoriasJpaController implements Serializable {
             }
         }
     }
-
+    @CrossOrigin("*")
     @GetMapping()
     public List<Categorias> findCategoriasEntities() {
         return findCategoriasEntities(true, -1, -1);

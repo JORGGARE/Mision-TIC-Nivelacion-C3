@@ -105,5 +105,9 @@ public class Usuarios implements Serializable {
     public String toString() {
         return "com.example.demo.Models.Usuarios[ id=" + id + " ]";
     }
+
+    public String getContraseña() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }
