@@ -28,29 +28,92 @@
 	
 	<!-- General Styles -->
 	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-
+	<!-- Navigation-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-bluelight">
+		<div class="container px-4 px-lg-5">
+			<a class="navbar-brand" href="HomeP.html">CAMISETAS</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="HomeP.html">INICIO</a></li>
+					<li class="nav-item"><a class="nav-link" href="index.html">Login</a></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">CATEGORIAS</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="#!">All Products</a></li>
+							<li><hr class="dropdown-divider" /></li>
+							<li><a class="dropdown-item" href="#!">Popular Items</a></li>
+							<li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+						</ul>
+					</li>
+				</ul>
+				<form class="d-flex">
+					<button class="btn btn-outline-dark" type="submit">
+						<i class="bi-cart-fill me-1"></i>
+						Cart
+						<span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+					</button>
+				</form>
+			</div>
+		</div>
+	</nav>
+ 	<!-- Section-->
 	<div class="login-container">
 		<div class="login-content">
-			<p class="text-center">
-				<i class="fas fa-user-circle fa-5x"></i>
-			</p>
-			<p class="text-center">
-				Ingreso al Workspace FRONTEND-STORE
-			<form action="">
+			<figure class="full-box nav-lateral-avatar">
+				<i class="far fa-times-circle show-nav-lateral"></i>
+				<img src="./assets/avatar/Logo camisetas JG.png" class="img-fluid" alt="Avatar">
+				<figcaption class="roboto-medium text-center">
+					FRONTEND-STORE <br><small class="roboto-condensed-light">Pagina Transaccional</small>
+				</figcaption>
+			</figure>
+							
+			<form name="frm" action="">
 				<div class="form-group">
 					<label for="UserName" class="bmd-label-floating"><i class="fas fa-user-secret"></i> &nbsp; Correo</label>
-					<input type="text" class="form-control" id="UserName">
+					<input type="email" name="correo" class="form-control" id="UserName">
 				</div>
 				<div class="form-group">
 					<label for="UserPassword" class="bmd-label-floating"><i class="fas fa-key"></i> &nbsp; Constraseña</label>
-					<input type="password" class="form-control" id="UserPassword">
+					<input type="password" name="contrasena" class="form-control" id="UserPassword">
 				</div>
-				<a href="home.html" class="btn-login text-center">Ingresar</a>
+				<button type="button" class="btn-login text-center" onclick="login()">Ingresar</button>
 			</form>
 		</div>
 	</div>
+	<script>
+		function login(){
+			console.log("Logueando......")			
+			let correo = document.frm.correo.value
+			let contrasena = document.frm.contrasena.value
+			console.log( correo + ','+ contrasena )
+			let usuario = {
+				"nombre": "",
+				"correo": correo,	
+				"contrasena": contrasena 
+			}
+			let options = {
+				method : "POST",
+				body : JSON.stringify(usuario),
+				headers :{
+					'Content-Type' : 'application/json'
+				}
+			}
+			fetch("http://localhost:9011/usuarios/login",options)
+			.then(response => response.json())
+			.then(data => { console.log(data) 
+				if(data.msj == "ok"){
+					document.location = "Panel.html"
+				}else{
+					alert("Datos de Acceso incorrectos")
+				}
+			
+			})
+		}
+	</script>
 
 	
 	<!--=============================================

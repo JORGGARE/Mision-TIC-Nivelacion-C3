@@ -26,12 +26,12 @@
 }
 
 :root{
-	--color-one: #1eb0f3;
-	--color-two: #1eb0f3;
+	--color-one: #1eb0f33c;
+	--color-two: #1eb0f33b;
 	--color-three: #0c0c0c;
 
 	--color-four: black;
-	--color-five: #198ec4;
+	--color-five: #198ec42d;
 	--color-six: #6E6C74;
 
 	--form-color: #03030b;
